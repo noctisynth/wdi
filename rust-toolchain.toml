@@ -1,0 +1,4 @@
+# dll-syringe uses nightly-only features (e.g. `linked_list_cursors`),
+# so this crate is built with the nightly toolchain.
+[toolchain]
+channel = "nightly"

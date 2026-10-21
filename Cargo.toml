@@ -1,0 +1,30 @@
+[package]
+name = "wdi"
+version = "0.1.0"
+edition = "2024"
+description = "A Windows DLL injector CLI built on top of the dll_syringe crate"
+license = "MIT"
+readme = "README.md"
+
+[[bin]]
+name = "wdi"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+anyhow = "1"
+
+[target.'cfg(windows)'.dependencies]
+dll-syringe = { version = "0.18", features = ["syringe"] }
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Memory",
+    "Win32_System_Threading",
+] }
+
+[profile.release]
+lto = true
+strip = true
